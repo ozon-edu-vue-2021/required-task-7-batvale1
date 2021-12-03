@@ -83,18 +83,23 @@
     result.popularPeople = Object.entries(result.popularPeople)
       // сортировка по популярности групп людей с одной и той же популярностью
       .sort((a, b) => b[0] - a[0])
-      .reduce((acc, item) => {
-        const [_, people] = item;
-
-        // сортировка имени по алфавиту в пределах одной и той же популярности
-        // people.sort((a, b) => a.name.localeCompare(b.name))
-        acc.push(...people);
+    
+    let counter = 0;
+    let popularPeople = [];
+    
+    for (let i = 0; i < result.popularPeople.length; i++) {
+        const currentPopularPeople = result.popularPeople[i][1];
         
-        return acc;
-      }, [])
-      .slice(0, PERSONAL_INFO_MAX_COUNT);
+        popularPeople.push(...currentPopularPeople.sort((a, b) => a.name.localeCompare(b.name)).map(item => item.id));
+        counter += currentPopularPeople.length;
   
-    result.popularPeople = result.popularPeople.sort((a, b) => a.name.localeCompare(b.name)).map(item => item.id);
+        if (counter >= PERSONAL_INFO_MAX_COUNT) {
+          result.popularPeople = popularPeople.slice(0, PERSONAL_INFO_MAX_COUNT);
+          return result;
+        }
+    }
+  
+    result.popularPeople = popularPeople;
     
     return result;
   }
