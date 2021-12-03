@@ -77,6 +77,8 @@
         return acc;
       }, {})
 
+    
+    
     // сортировка значений популярности
     result.popularPeople = Object.entries(result.popularPeople)
       // сортировка по популярности групп людей с одной и той же популярностью
@@ -85,12 +87,14 @@
         const [_, people] = item;
 
         // сортировка имени по алфавиту в пределах одной и той же популярности
-        people.sort((a, b) => a.name.localeCompare(b.name))
-        acc.push(...people.map(person => person.id));
+        // people.sort((a, b) => a.name.localeCompare(b.name))
+        acc.push(...people);
         
         return acc;
       }, [])
-      .slice(0, PERSONAL_INFO_MAX_COUNT)
+      .slice(0, PERSONAL_INFO_MAX_COUNT);
+  
+    result.popularPeople = result.popularPeople.sort((a, b) => a.name.localeCompare(b.name)).map(item => item.id);
     
     return result;
   }
