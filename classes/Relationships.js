@@ -15,7 +15,7 @@ class Relationships {
   }
   
   render() {
-    this.backBtn.addEventListener('click', this._close.bind(this));
+    this.backBtn.addEventListener('click', this._close.bind(this), { once: true });
     
     this.friendsList.innerHTML = '';
     this.notFriendsList.innerHTML = '';
@@ -36,6 +36,5 @@ class Relationships {
   
   _close () {
     this.elem.classList.remove(this._visibleClass);
-    this.backBtn.removeEventListener('click', this._close.bind(this));
   }
 }
