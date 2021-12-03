@@ -7,34 +7,44 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/style.css">
   <title>Тестовое задание</title>
+  <script src="./classes/Api.js" defer></script>
+  <script src="./classes/List.js" defer></script>
+  <script src="./classes/Relationships.js" defer></script>
+  <script src="./classes/Person.js" defer></script>
+  <script src="./classes/Contact.js" defer></script>
+  <script src="./script.js" defer></script>
 </head>
 <body>
   <div id="container">
     <div class="list-view">
-      <ul class="contacts-list">
-        <li>
-          <strong>Павел</strong>
-        </li>
-      </ul>
+      <ul class="contacts-list"></ul>
     </div>
     <div class="details-view">
       <div class="back"></div>
       <div class="background"></div>
-      <div><ul>
-        <li class="people-title">Друзья</li>
-        <li><i class="fa fa-male"></i><span >Иван</span></li>
-        <li><i class="fa fa-male"></i><span >Максим</span></li>
-        <li><i class="fa fa-male"></i><span >Марат</span></li>
-        <li class="people-title">Не в друзьях</li>
-        <li><i class="fa fa-male"></i><span >Вася</span></li>
-        <li><i class="fa fa-male"></i><span >Кирилл</span></li>
-        <li><i class="fa fa-male"></i><span >Степан</span></li>
-        <li class="people-title">Популярные люди</li>
-        <li><i class="fa fa-male"></i><span >Елена</span></li>
-        <li><i class="fa fa-male"></i><span >Оля</span></li>
-        <li><i class="fa fa-male"></i><span >Никита</span></li>
-      </ul></div>
+      <span class="details-view__person">
+        <strong class="details-view__person-name"></strong>
+      </span>
+      <div class="details-view__list">
+        <p class="people-title">Друзья</p>
+        <ul class="friends"></ul>
+        <p class="people-title">Не в друзьях</p>
+        <ul class="not-friends"></ul>
+        <p class="people-title">Популярные люди</p>
+        <ul class="popular-people"></ul>
+      </div>
     </div>
   </div>
+  <template id="contact">
+    <li class="contact__item">
+      <i class="fa fa-male"></i>
+      <span class="contacts-list__name">Иван</span>
+    </li>
+  </template>
+  <template id="person-template">
+    <li class="contacts-lists__item">
+      <strong class="contacts-list__name">Павел</strong>
+    </li>
+  </template>
 </body>
 </html>
